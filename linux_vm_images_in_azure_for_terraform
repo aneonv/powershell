@@ -1,0 +1,21 @@
+https://gmusumeci.medium.com/how-to-find-azure-linux-vm-images-for-terraform-or-packer-deployments-24e8e0ac68a
+#Login into Azure:
+Connect-AzAccount
+
+#The process starts by defining our Azure region using a variable:
+$location = "West Europe"
+
+#Then we will use Get-AzVMImagePublisher to list all publishers:
+Get-AzVMImagePublisher -Location $location | Select PublisherName
+
+#Optionally, we can export the result to a text file to explore the list in detail (I’m pretty sure you will be surprised by the result, and you want to explore a little bit more 😄):
+Get-AzVMImagePublisher -Location $location | Select PublisherName | Out-File -FilePath AzurePublisherList.txt
+
+#List of Endorsed Linux distributions on Azure:
+#Ubuntu → Canonical
+#RedHat → RedHat
+#CentOS → OpenLogic
+#SuSE Linux → SUSE
+#Debian → credativ (versions 8 & 9) and Debian (version +10)
+#Oracle Linux → Oracle-Linux
+#CoreOS → CoreOS
